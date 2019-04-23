@@ -1,0 +1,72 @@
+
+<!doctype html>
+<html>
+
+<head>
+  <title>CN Prod Landing</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <style>
+    h1 { font-size: 12pt; }
+  </style>
+</head>
+
+<body>
+
+
+<script>
+
+function relativeToAbsolute(url) {
+  if (url.indexOf("//") > -1) {
+    return url;
+  }
+  // trick using <a> element to turn relative URLs into absolute.
+  var a = document.createElement("a");
+  a.href = url;
+  return a.href;
+}
+function div(attr, url, height) {
+  var div = document.createElement("div");
+  div.className = "har";
+  div.setAttribute(attr, url);
+  div.setAttribute("height", height);
+  return div;
+}
+function harDiv(url, height) {
+  return div("data-har-url", url, height);
+}
+function harpDiv(url, height) {
+  return div("data-harp-url", url, height);
+}
+function embed(url, harOrHarp, height) {
+  var d = document.createElement("div");
+  d.setAttribute("data-role", "embedContainer");
+  d.innerHTML = "<h1>" + url + "</h1>";
+  d.appendChild(harOrHarp === "HAR" ? harDiv(url, height) : harpDiv(url, height));
+  document.body.appendChild(d);
+}
+</script>
+<script>embed(relativeToAbsolute("test1"), "HAR", "250px")</script>
+<script>embed(relativeToAbsolute("test2"), "HAR", "250px")</script>
+<script>embed(relativeToAbsolute("test3"), "HAR", "250px")</script>
+<script>embed(relativeToAbsolute("test4"), "HAR", "250px")</script>
+<script>embed(relativeToAbsolute("test5"), "HAR", "250px")</script>
+<script>embed(relativeToAbsolute("test6"), "HAR", "250px")</script>
+<script>embed(relativeToAbsolute("test7"), "HAR", "250px")</script>
+<script>embed(relativeToAbsolute("test8"), "HAR", "250px")</script>
+<script>embed(relativeToAbsolute("test9"), "HAR", "250px")</script>
+<script>embed(relativeToAbsolute("test10"), "HAR", "250px")</script>
+<!-- Examples using JavaScript to create the DOM elements that "har.js" will process. -->
+
+
+
+<div data-role="embedContainer">
+
+</div>
+
+
+
+<script src="./har.js" id="har"></script>
+
+</body>
+
+</html>
